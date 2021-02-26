@@ -63,9 +63,9 @@ imaging = al.Imaging.from_fits(
 These settings control various aspects of how long a fit takes. The values below are default PyAutoLens values.
 """
 sub_size = 4
-mask_radius = 3.0
+mask_radius = 3.5
 psf_shape_2d = (21, 21)
-pixelization_shape_2d = (36, 36)
+pixelization_shape_2d = (57, 57)
 
 """
 The model-fit also requires a mask defining the regions of the image we fit the lens model to the data.
