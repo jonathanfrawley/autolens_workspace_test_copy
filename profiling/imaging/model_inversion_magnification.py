@@ -291,3 +291,32 @@ fit_imaging_plotter.subplot_fit_imaging()
 """
 Checkout `/path/to/autolens_workspace/examples/model/results.py` for a full description of the result object.
 """
+### BEGIN PROFILING HERE ###
+
+def run_profile():
+    result = phase.run(dataset=imaging, mask=mask)
+
+    """
+    The phase above returned a result, which, for example, includes the lens model corresponding to the maximum
+    log likelihood solution in parameter space.
+    """
+    print(result.max_log_likelihood_instance)
+
+    """
+    It also contains instances of the maximum log likelihood Tracer and FitImaging, which can be used to visualize
+    the fit.
+    """
+    tracer_plotter = aplt.TracerPlotter(
+        tracer=result.max_log_likelihood_tracer, grid=mask.masked_grid_sub_1
+    )
+    tracer_plotter.subplot_tracer()
+    fit_imaging_plotter = aplt.FitImagingPlotter(fit=result.max_log_likelihood_fit)
+    fit_imaging_plotter.subplot_fit_imaging()
+
+    """
+    Checkout `/path/to/autolens_workspace/examples/model/results.py` for a full description of the result object.
+    """
+
+import cProfile
+
+cProfile.run('run_profile()', 'model_inversion_magnification.prof')
