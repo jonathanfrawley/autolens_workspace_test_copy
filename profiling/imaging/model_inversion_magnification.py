@@ -269,8 +269,6 @@ the model to the data.
 The fit outputs visualization on-the-fly, so checkout the path 
 `/path/to/autolens_workspace/output/examples/phase_mass[sie]_source[inversion]` to see how your fit is doing!
 """
-### BEGIN PROFILING HERE ###
-
 result = phase.run(dataset=imaging, mask=mask)
 
 """
