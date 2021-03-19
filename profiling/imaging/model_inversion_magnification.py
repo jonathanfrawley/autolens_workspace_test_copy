@@ -71,10 +71,10 @@ mask = al.Mask2D.circular(
     radius=mask_radius,
 )
 
-imaging_plotter = aplt.ImagingPlotter(
-    imaging=imaging, visuals_2d=aplt.Visuals2D(mask=mask)
-)
-imaging_plotter.subplot_imaging()
+#imaging_plotter = aplt.ImagingPlotter(
+#    imaging=imaging, visuals_2d=aplt.Visuals2D(mask=mask)
+#)
+#imaging_plotter.subplot_imaging()
 
 """
 __numba initialization__
@@ -246,7 +246,7 @@ The `name` and `path_prefix` below specify the path where results are stored in 
 search = af.DynestyStatic(
     path_prefix=path.join("profiling", "inversion_magnification", instrument),
     name="phase_mass[sie]_source[inversion]",
-    maxcall=1000,  # This sets how long the model-fit takes.
+    maxcall=10,  # This sets how long the model-fit takes.
     n_live_points=50,
 )
 
@@ -269,24 +269,24 @@ the model to the data.
 The fit outputs visualization on-the-fly, so checkout the path 
 `/path/to/autolens_workspace/output/examples/phase_mass[sie]_source[inversion]` to see how your fit is doing!
 """
-result = phase.run(dataset=imaging, mask=mask)
+#result = phase.run(dataset=imaging, mask=mask)
 
 """
 The phase above returned a result, which, for example, includes the lens model corresponding to the maximum
 log likelihood solution in parameter space.
 """
-print(result.max_log_likelihood_instance)
+#print(result.max_log_likelihood_instance)
 
 """
 It also contains instances of the maximum log likelihood Tracer and FitImaging, which can be used to visualize
 the fit.
 """
-tracer_plotter = aplt.TracerPlotter(
-    tracer=result.max_log_likelihood_tracer, grid=mask.masked_grid_sub_1
-)
-tracer_plotter.subplot_tracer()
-fit_imaging_plotter = aplt.FitImagingPlotter(fit=result.max_log_likelihood_fit)
-fit_imaging_plotter.subplot_fit_imaging()
+#tracer_plotter = aplt.TracerPlotter(
+#    tracer=result.max_log_likelihood_tracer, grid=mask.masked_grid_sub_1
+#)
+#tracer_plotter.subplot_tracer()
+#fit_imaging_plotter = aplt.FitImagingPlotter(fit=result.max_log_likelihood_fit)
+#fit_imaging_plotter.subplot_fit_imaging()
 
 """
 Checkout `/path/to/autolens_workspace/examples/model/results.py` for a full description of the result object.
@@ -306,12 +306,14 @@ def run_profile():
     It also contains instances of the maximum log likelihood Tracer and FitImaging, which can be used to visualize
     the fit.
     """
+    '''
     tracer_plotter = aplt.TracerPlotter(
         tracer=result.max_log_likelihood_tracer, grid=mask.masked_grid_sub_1
     )
     tracer_plotter.subplot_tracer()
     fit_imaging_plotter = aplt.FitImagingPlotter(fit=result.max_log_likelihood_fit)
     fit_imaging_plotter.subplot_fit_imaging()
+    '''
 
     """
     Checkout `/path/to/autolens_workspace/examples/model/results.py` for a full description of the result object.
