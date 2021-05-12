@@ -43,9 +43,14 @@ masked_imaging = imaging.apply_mask(mask=mask)
 """
 __Model__
 """
-lens = al.GalaxyModel(redshift=0.5, mass=al.mp.EllIsothermal, shear=al.mp.ExternalShear)
-source = al.GalaxyModel(
-    redshift=1.0, pixelization=al.pix.Rectangular, regularization=al.reg.Constant
+lens = af.Model(
+    al.Galaxy, redshift=0.5, mass=al.mp.EllIsothermal, shear=al.mp.ExternalShear
+)
+source = af.Model(
+    al.Galaxy,
+    redshift=1.0,
+    pixelization=al.pix.Rectangular,
+    regularization=al.reg.Constant,
 )
 
 model = af.Collection(galaxies=af.Collection(lens=lens, source=source))
@@ -56,6 +61,7 @@ __Search + Analysis + Model-Fit (Use Border)__
 search = af.DynestyStatic(
     name="pixelization_use_border",
     path_prefix=path.join("imaging", "database", "pixelization_settings"),
+    unique_tag=dataset_name,
     nlive=50,
 )
 
@@ -72,6 +78,7 @@ __Search + Analysis + Model-Fit (Not Use Border)__
 search = af.DynestyStatic(
     name="pixelization_not_use_border",
     path_prefix=path.join("imaging", "database", "pixelization_settings"),
+    unique_tag=dataset_name,
     nlive=50,
 )
 
